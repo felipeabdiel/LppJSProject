@@ -31,6 +31,9 @@ let id = Symbol("id");        // Symbol
 let grandeNumero = 123456789n;// BigInt
 ~~~
 
+#### O tipo String
+
+O tipo string merece um item no diário de bordo, uma vez que as operações e o tratamento de verificações atua de modo diferente em várias linguagens. No caso de JavaScript, as operações naturalmente encontradas em outras linguagens são possíveis, como a concatenação, verificação de tamanho, comparação, etc. Entretanto, mesmo que tratado como tipo primitivo, é válido reforçar a ideia de que o tipo string pode ser acessado também por meio de índices, assim como se faz na linguagem C, onde a string nada mais é que um array (vetor) de caracteres do tipo 'char'.
 
 ### Dados Estruturados
 No que diz respeito aos dados estruturados, eles se tratam de um conjunto de outros dados primitivos ou ordinais estruturados, podendo abarcar também outras variáveis de tipo estruturado. Nesse sentido, seguem abaixo os tipos de dados estruturados possíveis de serem estabelecidos na linguagem de JavaScript.
@@ -73,4 +76,54 @@ let conjunto = new Set();
 conjunto.add(1);
 conjunto.add(2);
 console.log(conjunto.has(1)); // true
+~~~
+
+### Tipos ordinais
+
+Os tipos ordinais são, em suma, tipos de dados definidos de forma direta pelo desenvolvedor. Entretanto, se tratando da linguagem sobre a qual fala-se neste repositório, JavaScript não possui tipos ordinais de dados de forma nativa. Por conta disso, é necessária a abstração dos tipos ordinais para adaptação dessa declaração, realizada por meio de funções construtoras e/ou objetos literais, conforme uma melhor definição descrita abaixo.
+
+1. Você pode usar objetos literais para representar tipos ordinais. Cada objeto pode conter propriedades que representam os valores e métodos para operar sobre esses valores.
+~~~javascript
+const DiaDaSemana = {
+    DOMINGO: { valor: 0, nome: 'Domingo' },
+    SEGUNDA: { valor: 1, nome: 'Segunda-feira' },
+    TERCA: { valor: 2, nome: 'Terça-feira' },
+    // ... outros dias da semana
+};
+
+console.log(DiaDaSemana.SEGUNDA.valor);  // 1
+console.log(DiaDaSemana.TERCA.nome);     // "Terça-feira"
+~~~
+
+2. Outra abordagem é usar funções construtoras para criar objetos que representam tipos ordinais.
+~~~javascript
+function DiaDaSemana(valor, nome) {
+    this.valor = valor;
+    this.nome = nome;
+}
+
+const DOMINGO = new DiaDaSemana(0, 'Domingo');
+const SEGUNDA = new DiaDaSemana(1, 'Segunda-feira');
+const TERCA = new DiaDaSemana(2, 'Terça-feira');
+
+console.log(SEGUNDA.valor);  // 1
+console.log(TERCA.nome);     // "Terça-feira"
+~~~
+
+Nesse sentido, como visualizado por meio dos exemplos acima citados, a linguagem JavaScript não fornece suporte nativo para a declaração de variáveis de tipo ordinal, embora ofereça formas alternativas para tais declarações. Sendo assim, a simulação desses tipos por meio de funções construtoras ou objetos literais atendem a necessidade de um tipo ordinal na linguagem, conforme possível verificar no exemplo à seguir, o qual mostra operações com dados ordinais simulados.
+
+~~~javascript
+// Comparação
+function compararDias(dia1, dia2) {
+    return dia1.valor - dia2.valor;
+}
+
+console.log(compararDias(SEGUNDA, TERCA));  // -1
+
+// Conversão para String
+DiaDaSemana.toString = function() {
+    return this.nome;
+};
+
+console.log(String(SEGUNDA));  // "Segunda-feira"
 ~~~
