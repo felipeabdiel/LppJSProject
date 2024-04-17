@@ -33,4 +33,44 @@ let grandeNumero = 123456789n;// BigInt
 
 
 ### Dados Estruturados
+No que diz respeito aos dados estruturados, eles se tratam de um conjunto de outros dados primitivos ou ordinais estruturados, podendo abarcar também outras variáveis de tipo estruturado. Nesse sentido, seguem abaixo os tipos de dados estruturados possíveis de serem estabelecidos na linguagem de JavaScript.
 
+1. Object: Este é o tipo de dado mais importante e mais versátil em JavaScript. Um objeto é uma coleção de propriedades, e uma propriedade é uma associação entre um nome (ou chave) e um valor. O valor de uma propriedade pode ser uma função, que é então considerada um método do objeto. Exemplos incluem objetos literais, arrays, funções, e muitos outros tipos de objetos embutidos.
+
+~~~javascript
+let pessoa = {
+    nome: "João",
+    idade: 28,
+    falar: function() { console.log("Olá!"); }
+};
+~~~
+
+2. Array: Arrays em JavaScript são objetos usados para armazenar listas ordenadas de valores. Eles podem conter qualquer tipo de dado, e os índices começam em 0. Arrays são objetos especiais com comportamentos e métodos adicionais para manipular listas ordenadas.
+~~~javascript
+let numeros = [1, 2, 3, 4, 5];
+console.log(numeros[0]); // Acessa o primeiro elemento, 1
+~~~
+
+3. Date: Este é um tipo de objeto embutido que é usado para trabalhar com datas e horas. Ele permite a representação de momentos específicos no tempo e oferece métodos para operações de data e hora, como comparar datas, extrair partes de uma data (dia, mês, ano, etc.), e formatar datas.
+~~~javascript
+let agora = new Date();
+console.log(agora); // Mostra a data e hora atual
+~~~
+
+4. RegExp (Expressões Regulares): Este é um objeto que descreve um padrão de caracteres. É usado principalmente para busca e substituição de texto em strings. É uma ferramenta poderosa para validar e manipular texto baseado em padrões definidos.
+~~~javascript
+let padrao = /ab+c/;
+let resultado = padrao.test("abc"); // Retorna true
+~~~
+
+5. Map e Set: Introduzidos com ES6, esses são novos tipos de coleções de dados. Map é uma coleção de pares chave-valor que lembra a ordem original de inserção das chaves. Set, por outro lado, é uma coleção de valores que não permite duplicatas.
+~~~javascript
+let mapa = new Map();
+mapa.set('chave', 'valor');
+console.log(mapa.get('chave')); // 'valor'
+
+let conjunto = new Set();
+conjunto.add(1);
+conjunto.add(2);
+console.log(conjunto.has(1)); // true
+~~~
