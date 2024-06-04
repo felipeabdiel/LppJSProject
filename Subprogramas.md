@@ -106,8 +106,8 @@ function GoodbyeWorld(string){  //função qualquer definida que faz o uso da fu
     }
 }
 
-function Imprime(string){ // Definição da função anteriormente declarada
-    console.log(string); //Um erro ocorrerá na execução do programa por conta da não definição da função em sua declaração
+function Imprime(string){ 
+    console.log(string); 
 }
 
 ~~~
