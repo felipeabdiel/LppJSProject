@@ -114,3 +114,47 @@ function Imprime(string){
 
 Nesse exemplo, a execução resultará em um erro por conta de não ter definido a função em sua declaração. Ou seja, em JS a declaração sem definição não é possível.
 
+#### Função e procedimento
+
+Em JavaScript não há a separação formal no que diz respeito entre procedimento e função, uma vez que são estruturalmente iguais. Entretanto, tal separação é possível de se realizar a nível conceitual. 
+
+• Procedimento
+
+É realizado com ou sem parâmetros, entretanto, ao contrário da função (que iremos ver no próximo item) não retorna valores específicos, sendo uma função que realiza uma atividade que modifica uma variável ou produz resultados de transferência de dados. 
+
+~~~javascript
+
+function imprimirSaudacao(nome) {
+    console.log(`Olá, ${nome}!`);
+}
+
+imprimirSaudacao('Ana'); // Olá, Ana!
+
+~~~
+
+Esse exemplo mostra de forma clara de que forma um procedimento atua, uma vez que ele não é utilizado para retornar um valor ou um parâmetro específico, tendo como resultado da chamada a execução de uma atividade sem geração de valores dados como retorno da função.
+
+• Função
+
+A função, por outro lado, é caracterizada por se tratar de um subprograma com retorno de valores após a chamada da função. Isto é, sempre que a função for chamada em uma determinada parte do código, a ela será atribuída a geração de um valor que irá compor aquela parte do código afim de realizar uma determinada operação.
+
+~~~javascript
+
+function soma(a, b) {
+    return a + b;
+}
+
+const resultado = soma(3, 4); // resultado será 7
+console.log(resultado); // 7
+
+~~~
+
+Como pode se observar, a chamada da função resulta em um valor específico passado como parâmetro para a impressão.
+
+#### Passagem de parâmetros
+
+No que diz respeito a passagem de parâmetros nas funções, a linguagem de programação JavaScript oferece várias possibilidades. As definições e exemplos serão dados a seguir.
+
+• Passagem por valor
+
+Se tratando de tipos primitivos, JavaScript utiliza da passagem de parâmetros por valor para as funções.
