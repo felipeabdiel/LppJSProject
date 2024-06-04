@@ -13,18 +13,19 @@ Em Javascript é possível utilizar de subprogramas de diversas formas. Entre el
 
 • Declaração de função:
 
-´´´(javascript)
+~~~javascript
 
 function HelloWorld(){
     return ("Hello World");
 }
 
-´´´
+~~~
+
 Essa função trata-se de um subprograma que faz a simplificação de um comando que seria mais longo. Ou seja, a chamada dessa função simplifica um procedimento que levaria mais tempo para ser executado.
 
 • Modularização do código
 
-´´´(javascript)
+~~~javascript
 
 function soma(a, b) {
     return a + b;
@@ -36,7 +37,8 @@ function media(a, b) {
 
 console.log(media(4, 6)); // 5
 
-´´´
+~~~
+
 Nesse caso, a modularização permite uma legibilidade e manutenção muito melhor do código, de forma que qualquer necessidade de trabalho após a instalação do software se torna muito facilitada.
 
 #### Cabeçalhos
@@ -47,46 +49,68 @@ Os tipos de cabeçalho em subprogramas de Javascript são formalmente definidos 
 
 Na declaração de função, o cabeçalho tem como palavra-chave a expressão 'function', seguida do nome da função e, entre parênteses, a declaração de parâmetros.
 
-´´´(javascript)
+~~~javascript
 function nomeDaFuncao(param1, param2) {
     // corpo da função
 }
 
-´´´
+~~~
 
 • Expressão de função
 
 Na expressão de função, há uma declaração da função por meio de um prefixo 'const' e o nome da função é opcional, embora seja obrigatório definir parâmetros para a função.
 
-´´´(javascript)
+~~~javascript
 const nomeDaFuncao = function(param1, param2) {
     // corpo da função
 };
 
-´´´
+~~~
 
-• Funções de seta 
+• Funções de seta
 
 Nesse tipo de cabeçalho, a função é definida pelo prefixo 'const', seguida da lista de parâmetros seguida de uma seta que inicia o corpo da função.
 
-´´´(javascript)
+~~~javascript
 const nomeDaFuncao = (param1, param2) => {
     // corpo da função
 };
 
-´´´
+~~~
 
 • Funções anônimas
 
 Há também o uso de funções anônimas (funções sem nome definido), as quais podem ser utilizadas como argumentos para outras funções do software.
 
-´´´(javascript)
+~~~javascript
 setTimeout(function() {
     console.log('Olá, mundo!');
 }, 1000);
 
-´´´
+~~~
 
 #### Declaração x Definição
 
-Por se tratar de uma linguagem fracamente tipada
+Por se tratar de uma linguagem fracamente tipada, a declaração prévia de uma função sem a sua definição não é possível. Isto é, não há a possibilidade de declarar uma função sem definí-la de imediato. Isso será melhor traduzido nos exemplos a seguir:
+
+~~~javascript
+
+function Imprime(string); // declaração da função
+
+function GoodbyeWorld(string){  //função qualquer definida que faz o uso da função declarada anteriormente
+    if (string == "Goodbye"){
+        Console.log("Goodbye World);
+    }
+    else{
+        Imprime(string);
+    }
+}
+
+function Imprime(string){ // Definição da função anteriormente declarada
+    Console.log(string); //Um erro ocorrerá na execução do programa por conta da não definição da função em sua declaração
+}
+
+~~~
+
+Nesse exemplo, a execução resultará em um erro por conta de não ter definido a função em sua declaração. Ou seja, em JS a declaração sem definição não é possível.
+
