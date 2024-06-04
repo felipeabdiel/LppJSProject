@@ -99,7 +99,7 @@ function Imprime(string); // declaração da função
 
 function GoodbyeWorld(string){  //função qualquer definida que faz o uso da função declarada anteriormente
     if (string == "Goodbye"){
-        Console.log("Goodbye World);
+        console.log("Goodbye World);
     }
     else{
         Imprime(string);
@@ -107,7 +107,7 @@ function GoodbyeWorld(string){  //função qualquer definida que faz o uso da fu
 }
 
 function Imprime(string){ // Definição da função anteriormente declarada
-    Console.log(string); //Um erro ocorrerá na execução do programa por conta da não definição da função em sua declaração
+    console.log(string); //Um erro ocorrerá na execução do programa por conta da não definição da função em sua declaração
 }
 
 ~~~
