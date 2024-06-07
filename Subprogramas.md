@@ -157,4 +157,32 @@ No que diz respeito a passagem de parâmetros nas funções, a linguagem de prog
 
 • Passagem por valor
 
-Se tratando de tipos primitivos, JavaScript utiliza da passagem de parâmetros por valor para as funções.
+Se tratando de tipos primitivos, JavaScript utiliza da passagem de parâmetros por valor para as funções. Isto é, para dados primitidos JS utiliza de forma nativa uma cópia da variável como valor para utilização do valor como parâmetro da função.
+
+~~~javascript
+
+function modificarValor(x) {
+    x = 10;
+}
+
+let a = 5;
+modificarValor(a);
+console.log(a); // 5, 'a' não foi modificado
+
+~~~
+
+• Passagem por referência
+
+Já a passagem por referência funciona de forma a alterar diretamente o valor do atributo por meio da passagem de referência do endereço de memória onde se localiza a variável/atributo, modificando-o diretamente, sem utilização de cópias. Em JavaScript, o uso de passagem por referência é utilizado, principalmente, com parâmetros objetos.
+
+~~~javascript
+
+function modificarObjeto(obj) {
+    obj.propriedade = 'novo valor';
+}
+
+let meuObjeto = { propriedade: 'valor original' };
+modificarObjeto(meuObjeto);
+console.log(meuObjeto.propriedade); // 'novo valor'
+
+~~~
