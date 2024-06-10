@@ -247,4 +247,41 @@ saudacao('Ana', 'Como vai?', 'Tenha um bom dia!');
 // Tenha um bom dia!
 ~~~
 
+#### Subprogramas aninhados
 
+Subprogramas aninhados, ou funções internas, são funções definidas dentro de outra função. Isto é, um subprograma que, definido dentro de um subprograma externo, é executado sempre que a função externa é chamada. Esse tipo de função pode ser uma alternativa viável em alguns casos, mas pode vir a ser problemática em desempenho e complexidade caso haja um uso absusivo, uma vez que a chamada da função externa cria novas instâncias internas. O maior benefício é o encapsulamento que algumas funções podem tomar, facilitando a legibilidade e funcionamento de alguns subprogramas.
+Abaixo seguem alguns exemplos de funções aninhadas
+
+• Exemplo 1
+~~~javascript
+function externa(nome) {
+    // Variável no escopo da função externa
+    let saudacao = 'Olá';
+
+    // Função aninhada
+    function interna() {
+        // Acessa a variável 'saudacao' da função externa
+        return `${saudacao}, ${nome}!`;
+    }
+
+    // Chama a função aninhada
+    return interna();
+}
+
+console.log(externa('Ana')); // Olá, Ana!
+~~~
+
+• Exemplo 2
+~~~javascript
+function externa() {
+    let x = 10;
+
+    function interna() {
+        console.log(x); // Acessa 'x' da função externa
+    }
+
+    interna();
+}
+
+externa(); // 10
+~~~
