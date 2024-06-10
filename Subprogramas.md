@@ -186,3 +186,65 @@ modificarObjeto(meuObjeto);
 console.log(meuObjeto.propriedade); // 'novo valor'
 
 ~~~
+
+#### Parâmetros posicionais e nomeados
+
+JavaScript utiliza por natureza a passagem de parâmetros no modelo posicional, entretanto há maneiras de passar parâmetros para a função por meio de nomeação. Abaixo seguem dois exemplos, um com passagem posicional e outra com passagem por nomeação.
+
+• Passagem posicional
+
+A passagem posicional indica que os parâmetros devem ser passados e reconhecidos de acordo com a ordem em que a função é definida:
+
+~~~javascript
+function saudacao(nome, idade) {
+    console.log(`Olá, ${nome}. Você tem ${idade} anos.`);
+}
+
+saudacao('Ana', 25); // Olá, Ana. Você tem 25 anos.
+~~~
+
+• Passagem nominal
+
+A passagem por nome, ao contrário da passagem posicional, não depende da ordem em que é definido pois cada parâmetro é passado com acompanhamento do nome de seu atributo.
+
+~~~javascript
+function criarUsuario({ nome, idade, email }) {
+    console.log(`Nome: ${nome}, Idade: ${idade}, Email: ${email}`);
+}
+
+criarUsuario({ nome: 'Ana', idade: 25, email: 'ana@example.com' });
+// Nome: Ana, Idade: 25, Email: ana@example.com
+~~~
+
+#### Valores padrões de passagem
+
+Algumas linguagens dispõe de uma necessidade de ter na passagem de parâmetros, uma mesma quantidade entre os parâmetros definidos na criação da função e os parâmetros declarados na chamada. Isto é, se uma função em sua definição tem quatro parâmetros definidos para passagem, a função deve ter obrigatoriamente quatro parâmetros passados na sua chamada em sua execução.
+Nesse sentido JavaScript é uma linguagem que trata funções de forma flexível, o que significa que você pode passar qualquer número de argumentos para uma função, independentemente de quantos parâmetros formais a função tenha definido. Essa flexibilidade é permitida pela forma como a linguagem lida com os argumentos das funções. Esse funcionamento se dá pois cada função em JavaScript possui um objeto implícito chamado arguments. Esse objeto é uma coleção (semelhante a um array) de todos os argumentos passados para a função, independentemente de quantos parâmetros formais a função tenha declarado. Isso permite que você acesse todos os argumentos passados para a função, mesmo que eles não tenham correspondentes nos parâmetros formais.
+
+~~~javascript
+function exemplo() {
+    console.log(arguments);
+}
+
+exemplo(1, 2, 3, 4); // [1, 2, 3, 4]
+~~~
+
+Além disso, mesmo que você passe mais argumentos do que os declarados formalmente, os argumentos adicionais podem ser acessados via o objeto arguments ou usando parâmetros rest. A função pode escolher ignorá-los, processá-los ou manipulá-los de acordo com a lógica implementada.
+
+~~~javascript
+function saudacao(nome) {
+    console.log(`Olá, ${nome}`);
+    console.log(`Argumentos adicionais:`);
+    for (let i = 1; i < arguments.length; i++) {
+        console.log(arguments[i]);
+    }
+}
+
+saudacao('Ana', 'Como vai?', 'Tenha um bom dia!');
+// Olá, Ana
+// Argumentos adicionais:
+// Como vai?
+// Tenha um bom dia!
+~~~
+
+
