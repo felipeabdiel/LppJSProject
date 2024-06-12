@@ -187,6 +187,78 @@ console.log(meuObjeto.propriedade); // 'novo valor'
 
 ~~~
 
+• Passagem por resultado
+
+Embora não seja possível utilizar a passagem por resultado de forma nativa em Javascript, é possível simular o seu funcionamento por meio de manipulações da função. Nesse sentido, a passagem por resultado é um mecanismo de passagem de parâmetros onde um argumento é passado para uma função, e após a execução da função, o valor do parâmetro é copiado de volta para a variável original. O uso desse mecanismo em JavaScript é, geralmente, utilizado com objetos e arrays.
+
+~~~javascript
+function atualizarResultado(resultado) {
+    resultado.valor = 42;
+}
+
+let resultado = { valor: 0 };
+atualizarResultado(resultado);
+console.log(resultado.valor); // 42
+~~~
+
+• Passagem por valor-resultado
+
+A passagem por valor-resultado é um modo de passagem chamado in-out pois recebem e enviam dados dos parâmetros reais. Nesse sentido, JavaScript não usa também de forma nativa, mas todo o seu uso pode ser direcionado a fim de simular esse modo de função.
+
+~~~javascript
+function processarValores(data) {
+    // Modificar os valores no objeto
+    data.valor1 = data.valor1 * 2;
+    data.valor2 = data.valor2 + 100;
+    data.valor3 = `Olá, ${data.valor3}`;
+}
+
+let dados = {
+    valor1: 5,
+    valor2: 10,
+    valor3: 'Mundo'
+};
+
+// Chamada da função
+processarValores(dados);
+
+// Após a execução da função, 'dados' contém os valores modificados
+console.log(dados.valor1); // 10 (5 * 2)
+console.log(dados.valor2); // 110 (10 + 100)
+console.log(dados.valor3); // "Olá, Mundo"
+~~~
+
+Por se tratar de um código mais complexo, uma breve explicação será disposta sobre o código.
+Neste exemplo, temos um objeto dados com três propriedades (valor1, valor2, valor3). Ao chamar processarValores(dados), passamos o objeto dados por referência. A função modifica os valores dentro do objeto dados, e essas modificações são refletidas fora da função porque dados e data (dentro da função) referenciam o mesmo objeto na memória.
+Este método permite encapsular múltiplos valores em um objeto, passar e modificar esses valores dentro de uma função, e ver as modificações refletidas no objeto original após a execução da função, simulando a passagem por valor-resultado.
+
+• Passagem por nome
+
+A passagem por nome é uma técnica teórica onde os argumentos são substituídos por expressões ou variáveis diretamente no corpo da função, sendo avaliados quando usados. Embora JavaScript não suporte diretamente a passagem por nome, podemos simular um comportamento similar usando funções como argumentos. Essa técnica permite avaliação tardia e pode ser útil em contextos específicos, mas adiciona complexidade ao código.
+
+
+~~~javascript
+function calcular(getX, getY) {
+    return getX() + getY();
+}
+
+let a = 5;
+let b = 10;
+
+// Funções que retornam os valores de 'a' e 'b'
+let getA = () => a;
+let getB = () => b;
+
+// Chamada da função com funções como argumentos
+console.log(calcular(getA, getB));  // 15
+
+// Modificar 'a' e 'b'
+a = 20;
+b = 30;
+
+console.log(calcular(getA, getB));  // 50
+~~~
+
 #### Parâmetros posicionais e nomeados
 
 JavaScript utiliza por natureza a passagem de parâmetros no modelo posicional, entretanto há maneiras de passar parâmetros para a função por meio de nomeação. Abaixo seguem dois exemplos, um com passagem posicional e outra com passagem por nomeação.
@@ -285,3 +357,48 @@ function externa() {
 
 externa(); // 10
 ~~~
+
+#### Verificação de tipo
+
+A verificação de tipo é um fator de linguagem que não se aplica de forma nativa a todas as linguagens. Isto é, algumas linuagens não forçam a verificação de tipo entre o parâmetro real e o parâmetro formal da função. 
+No caso de JavaScript, por se tratar de uma linguagem de tipagem dinâmica, os valores são armazenados sem definição explícita de tipo, isso oferece certa flexibilidade, entretanto certas verificações manuais são necessárias a depender do tipo de subprograma a ser utilizado. Abaixo será disposto um exemplo para a verificação de variável e uma verificação de array.
+
+• Uso do 'typeof' (Verificação de tipo de variável)
+
+~~~javascript
+function soma(a, b) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw new Error('Os parâmetros devem ser números');
+    }
+    return a + b;
+}
+
+try {
+    console.log(soma(2, 3)); // 5
+    console.log(soma(2, '3')); // Error: Os parâmetros devem ser números
+} catch (e) {
+    console.error(e.message);
+}
+~~~
+
+• Uso do 'instanceof' (Verificação de tipo de objeto ou array)
+
+~~~javascript
+function processarLista(lista) {
+    if (!(lista instanceof Array)) {
+        throw new Error('O parâmetro deve ser um array');
+    }
+    // Processa a lista
+    lista.forEach(item => console.log(item));
+}
+
+try {
+    processarLista([1, 2, 3]); // 1 2 3
+    processarLista('não é uma lista'); // Error: O parâmetro deve ser um array
+} catch (e) {
+    console.error(e.message);
+}
+~~~
+
+Com isso, é possível visualizar que, mesmo sendo uma linguagem dinamicamente tipada, é importante ter em mente que a verificação de tipo deve ser realizada caso a função exija um tipo específico, de forma que não haja erros que seriam facilmente detectados por meio de uma verificação manual simples.
+
