@@ -402,3 +402,55 @@ try {
 
 Com isso, é possível visualizar que, mesmo sendo uma linguagem dinamicamente tipada, é importante ter em mente que a verificação de tipo deve ser realizada caso a função exija um tipo específico, de forma que não haja erros que seriam facilmente detectados por meio de uma verificação manual simples.
 
+#### Passagem de subprogramas como parâmetros
+
+Em JavaScript, funções podem ser tratadas como valores. Isso significa que você pode passar funções como argumentos para outras funções, retorná-las como resultados de outras funções e atribuí-las a variáveis. Vamos explorar como isso funciona.
+Dessa forma, quando você passa para a função um subprograma como argumento, você permite que o subprograma tratado como parâmetro seja chamado dentro da função que a recebe. Abaixo segue um exemplo que demonstra tal situação de forma clara
+
+~~~javascript
+function executarOperacao(operacao, a, b) {
+    return operacao(a, b);
+}
+
+function soma(x, y) {
+    return x + y;
+}
+
+function multiplicacao(x, y) {
+    return x * y;
+}
+
+console.log(executarOperacao(soma, 5, 3)); // 8
+console.log(executarOperacao(multiplicacao, 5, 3)); // 15
+~~~
+
+É possível citar ainda que há a possibilidade de utilizar funções anônimas como argumentos, conforme disposto à seguir:
+
+~~~javascript
+console.log(executarOperacao(function(x, y) {
+    return x - y;
+}, 10, 4)); // 6
+
+console.log(executarOperacao((x, y) => x / y, 20, 5)); // 4
+~~~
+
+• Verificação de tipo de função passada por parâmetro
+
+A verificação de tipo de função passada como parâmetro em JavaScript não é uma funcionalidade nativa da linguagem. Entretanto, algumas extensões da linguagem possibilitam a verificação de função, como é o caso do TypeScript.
+
+~~~typescript
+// Definindo um tipo de função que aceita dois números e retorna um número
+type Operacao = (x: number, y: number) => number;
+
+function executarOperacao(operacao: Operacao, a: number, b: number): number {
+    return operacao(a, b);
+}
+
+const soma: Operacao = (x, y) => x + y;
+const multiplicacao: Operacao = (x, y) => x * y;
+
+console.log(executarOperacao(soma, 5, 3)); // 8
+console.log(executarOperacao(multiplicacao, 5, 3)); // 15
+~~~
+
+No início do código há uma definição de tipo que funciona como um subprograma que recebe dois números e retorna um número. Tal tipo pode ser utilizado e chamado da forma que for necessária dentro do subprogama 'executarOperacao'.
